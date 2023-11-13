@@ -1,5 +1,5 @@
 // Define the repository information in these attributes
-:repository-owner: arduino-libraries
+:repository-owner: hasenradball
 :repository-name: NINA-Wi-Fi
 
 = {repository-name} NINA-Wi-Fi =
