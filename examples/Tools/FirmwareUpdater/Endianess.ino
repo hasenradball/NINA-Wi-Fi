@@ -1,5 +1,5 @@
 /*
-  Endianess.ino - Network byte order conversion functions.
+  Endianness.ino - Network byte order conversion functions.
   Copyright (c) 2015 Arduino LLC.  All right reserved.
 
   This library is free software; you can redistribute it and/or
