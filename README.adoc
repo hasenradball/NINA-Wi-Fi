@@ -2,7 +2,7 @@
 :repository-owner: hasenradball
 :repository-name: NINA-Wi-Fi
 
-= {repository-name} =
+= {repository-name}
 
 image:https://github.com/{repository-owner}/{repository-name}/actions/workflows/check-arduino.yml/badge.svg["Check Arduino status", link="https://github.com/{repository-owner}/{repository-name}/actions/workflows/check-arduino.yml"]
 image:https://github.com/{repository-owner}/{repository-name}/actions/workflows/compile-examples.yml/badge.svg["Compile Examples status", link="https://github.com/{repository-owner}/{repository-name}/actions/workflows/compile-examples.yml"]
@@ -15,5 +15,7 @@ With this library you can instantiate Servers, Clients and send/receive UDP pack
 For more information about this library please visit us at
 https://github.com/hasenradball/NINA-Wi-Fi/
 
-## License
-[MIT License](./LICENSE)
+== License
+This repository is licensed under MIT License.
+
+https://github.com/hasenradball/NINA-Wi-Fi/blob/master/LICENSE[*MIT License*]
