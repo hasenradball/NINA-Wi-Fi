@@ -14,3 +14,6 @@ With this library you can instantiate Servers, Clients and send/receive UDP pack
 
 For more information about this library please visit us at
 https://github.com/hasenradball/NINA-Wi-Fi/
+
+## License
+[MIT License](./LICENSE)
