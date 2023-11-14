@@ -9,7 +9,7 @@
  by Frank Häfele
  */
 #include <SPI.h>
-#include <NINA-WiFi.h>
+#include <NINA-Wi-Fi.h>
 
 #include "arduino_secrets.h" 
 // ==> please enter your sensitive data in the Secret tab/arduino_secrets.h
