@@ -1,16 +1,16 @@
 /*
- This example  prints the board's MAC address, and
- scans for available WiFi networks using the NINA module.
- Every ten seconds, it scans again. It doesn't actually
- connect to any network, so no encryption scheme is specified.
+  This example  prints the board's MAC address, and
+  scans for available WiFi networks using the NINA module.
+  Every ten seconds, it scans again. It doesn't actually
+  connect to any network, so no encryption scheme is specified.
 
- Circuit:
- * Board with NINA module (Arduino MKR WiFi 1010, MKR VIDOR 4000 and Uno WiFi Rev.2)
+  Circuit:
+  * Board with NINA module (Arduino MKR WiFi 1010, MKR VIDOR 4000 and Uno WiFi Rev.2)
 
- created 13 July 2010
- by dlf (Metodo2 srl)
- modified 21 Junn 2012
- by Tom Igoe and Jaymes Dec
+  created 13 July 2010
+  by dlf (Metodo2 srl)
+  modified 12 December 2023
+  by Frank Häfele
  */
 
 
@@ -45,14 +45,14 @@ void setup() {
 
 void loop() {
   // scan for existing networks:
-  Serial.println("Scanning available networks...");
+  Serial.println("\nScanning available networks...");
   listNetworks();
-  delay(10000);
+  delay(25000);
 }
 
 void listNetworks() {
   // scan for nearby networks:
-  Serial.println("** Scan Networks **");
+  Serial.println("\n** Scan Networks **");
   int numSsid = WiFi.scanNetworks();
   if (numSsid == -1) {
     Serial.println("Couldn't get a WiFi connection");
@@ -60,19 +60,36 @@ void listNetworks() {
   }
 
   // print the list of networks seen:
-  Serial.print("number of available networks:");
+  Serial.print("number of available networks: ");
   Serial.println(numSsid);
 
+  Serial.print("\tSSID");
+  Serial.print("                            Signal");
+  Serial.print("    Channel");
+  Serial.println("    Encryption");
+
+
   // print the network number and name for each network found:
-  for (int thisNet = 0; thisNet < numSsid; thisNet++) {
-    Serial.print(thisNet);
-    Serial.print(") ");
-    Serial.print(WiFi.SSID(thisNet));
-    Serial.print("\tSignal: ");
+  for (int thisNet = 0; thisNet < numSsid; ++thisNet) {
+    Serial.print(thisNet + 1);
+    Serial.print(")\t");
+    
+    String str = WiFi.SSID(thisNet);
+    size_t len = str.length();
+    Serial.print(str);
+
+    for(size_t i = 32U - len; i > 0; --i) {
+      Serial.print(" ");
+    }
     Serial.print(WiFi.RSSI(thisNet));
-    Serial.print(" dBm");
-    Serial.print("\tEncryption: ");
+    Serial.print(" dBm\t  ");
+
+    Serial.print(WiFi.channel(thisNet));
+    Serial.print("\t     ");
+    
     printEncryptionType(WiFi.encryptionType(thisNet));
+
+    Serial.flush();
   }
 }
 
