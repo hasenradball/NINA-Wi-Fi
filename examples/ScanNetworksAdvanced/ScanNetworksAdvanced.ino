@@ -10,8 +10,8 @@
 
   This example is based on ScanNetworks
 
-  created 1 Mar 2017
-  by Arturo Guadalupi
+  created 11.12.2023 
+  by Frank Häfele
 */
 
 
@@ -58,7 +58,7 @@ void loop() {
 
 void listNetworks() {
   // scan for nearby networks:
-  Serial.println("** Scan Networks **");
+  Serial.println("\n\n** Scan Networks **");
   int numSsid = WiFi.scanNetworks();
   if (numSsid == -1)
   {
@@ -70,25 +70,39 @@ void listNetworks() {
   Serial.print("number of available networks: ");
   Serial.println(numSsid);
 
+  Serial.print("\tSSID");
+  Serial.print("                            Signal");
+  Serial.print("    Channel");
+  Serial.print("    Encryption");
+  Serial.print("    BSSID\n");
+
+
   // print the network number and name for each network found:
-  for (int thisNet = 0; thisNet < numSsid; thisNet++) {
+  for (int thisNet = 0; thisNet < numSsid; ++thisNet) {
     Serial.print(thisNet + 1);
-    Serial.print(") ");
-    Serial.print("Signal: ");
+    Serial.print(")\t");
+    
+    String str = WiFi.SSID(thisNet);
+    size_t len = str.length();
+    Serial.print(str);
+
+    for(size_t i = 32U - len; i > 0; --i) {
+      Serial.print(" ");
+    }
     Serial.print(WiFi.RSSI(thisNet));
-    Serial.print(" dBm");
-    Serial.print("\tChannel: ");
+    Serial.print(" dBm\t  ");
+
     Serial.print(WiFi.channel(thisNet));
-    byte bssid[6];
-    Serial.print("\t\tBSSID: ");
-    printMacAddress(WiFi.BSSID(thisNet, bssid));
-    Serial.print("\tEncryption: ");
+    Serial.print("\t     ");
+    
     printEncryptionType(WiFi.encryptionType(thisNet));
-    Serial.print("\t\tSSID: ");
-    Serial.println(WiFi.SSID(thisNet));
+    Serial.print("\t   ");
+
+    byte bssid[6];
+    printMacAddress(WiFi.BSSID(thisNet, bssid));
     Serial.flush();
+    Serial.println();
   }
-  Serial.println();
 }
 
 void printEncryptionType(int thisType) {
@@ -133,5 +147,4 @@ void printMacAddress(byte mac[]) {
       Serial.print(":");
     }
   }
-  Serial.println();
 }

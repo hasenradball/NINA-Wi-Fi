@@ -60,6 +60,7 @@ void setup() {
   Serial.println("\nYou're connected to the network");
   printCurrentNet();
   printWiFiData();
+  Serial.println();
 }
 
 void loop() {
